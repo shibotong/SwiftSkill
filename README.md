@@ -72,7 +72,6 @@ The `Skill` struct contains the following properties:
 | `description` | `String` | Yes |
 | `license` | `String?` | No |
 | `metadata` | `[String: String]?` | No |
-| `allowedTools` | `[String]?` | No |
 
 ## Dependencies
 
