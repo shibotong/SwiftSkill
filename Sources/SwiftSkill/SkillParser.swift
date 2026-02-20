@@ -16,7 +16,11 @@ public protocol SkillParser {
 
 public class MarkdownParser: SkillParser {
     
-    private let decoder = YAMLDecoder()
+    private let decoder = {
+        let encoding = Parser.Encoding(rawValue: <#T##String#>)
+        let decoder = YAMLDecoder(encoding: <#T##Parser.Encoding#>)
+        decoder.
+    }
     
     public func parse(url: URL) async throws -> Skill {
         let (data, _) = try await URLSession.shared.data(from: url)
@@ -28,9 +32,7 @@ public class MarkdownParser: SkillParser {
     
     public func parse(_ markdown: String) throws -> Skill {
         let split = markdown.split(separator: "---", maxSplits: 1, omittingEmptySubsequences: true)
-        print(split)
         let yamlText = String(markdown.split(separator: "---", maxSplits: 1, omittingEmptySubsequences: true).first ?? "")
-        print(yamlText)
         let skill = try decoder.decode(Skill.self, from: yamlText)
         return skill
     }
