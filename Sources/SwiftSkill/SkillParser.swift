@@ -5,7 +5,6 @@
 //  Created by Shibo Tong on 20/2/2026.
 //
 
-import Markdown
 import Yams
 import Foundation
 
@@ -16,11 +15,7 @@ public protocol SkillParser {
 
 public class MarkdownParser: SkillParser {
     
-    private let decoder = {
-        let encoding = Parser.Encoding(rawValue: <#T##String#>)
-        let decoder = YAMLDecoder(encoding: <#T##Parser.Encoding#>)
-        decoder.
-    }
+    let decoder = YAMLDecoder()
     
     public func parse(url: URL) async throws -> Skill {
         let (data, _) = try await URLSession.shared.data(from: url)
@@ -31,7 +26,6 @@ public class MarkdownParser: SkillParser {
     }
     
     public func parse(_ markdown: String) throws -> Skill {
-        let split = markdown.split(separator: "---", maxSplits: 1, omittingEmptySubsequences: true)
         let yamlText = String(markdown.split(separator: "---", maxSplits: 1, omittingEmptySubsequences: true).first ?? "")
         let skill = try decoder.decode(Skill.self, from: yamlText)
         return skill

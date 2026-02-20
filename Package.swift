@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftSkill",
     platforms: [
-        .macOS(.v26),
+        .macOS(.v13),
         .iOS(.v26),
     ],
     products: [
@@ -17,7 +17,6 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-markdown.git", from: "0.7.3"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "6.2.1")
     ],
     targets: [
@@ -26,7 +25,6 @@ let package = Package(
         .target(
             name: "SwiftSkill",
             dependencies: [
-                .product(name: "Markdown", package: "swift-markdown"),
                 .product(name: "Yams", package: "Yams"),
             ]
         ),
